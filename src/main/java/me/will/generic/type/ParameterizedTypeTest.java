@@ -26,7 +26,7 @@ public class ParameterizedTypeTest {
     private Map.Entry<String, String> entry;
 
     public void test() throws NoSuchFieldException {
-        Class<ParameterizedTypeTest> clazz = ParameterizedTypeTest.class;
+        Class clazz = this.getClass();
         Field field = clazz.getDeclaredField("entry");
         Type type = field.getGenericType();
         if (type instanceof ParameterizedType){

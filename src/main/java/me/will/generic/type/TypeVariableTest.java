@@ -15,7 +15,7 @@ public class TypeVariableTest <T>{
 
     public void test() throws NoSuchFieldException {
         String name="self";
-        Field field = TypeVariableTest.class.getDeclaredField(name);
+        Field field = this.getClass().getDeclaredField(name);
         Type type = field.getGenericType();
         System.out.println(name+" is ParameterizedType:"+(type instanceof ParameterizedType));
         System.out.println(name+" is TypeVariable:"+(type instanceof TypeVariable));
@@ -26,7 +26,7 @@ public class TypeVariableTest <T>{
 
     public void test2() throws NoSuchFieldException {
         String name="key";
-        Field field = TypeVariableTest.class.getDeclaredField(name);
+        Field field = this.getClass().getDeclaredField(name);
         Type type = field.getGenericType();
         if(type instanceof TypeVariable){
             TypeVariable typeVariable = (TypeVariable)type;
