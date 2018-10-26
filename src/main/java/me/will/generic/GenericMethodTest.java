@@ -3,6 +3,8 @@ package me.will.generic;
 import com.alibaba.fastjson.JSON;
 import lombok.Data;
 
+import java.lang.reflect.*;
+
 /**
  * Created by duyisong on 13/10/2018.
  */
@@ -31,6 +33,11 @@ public class GenericMethodTest{
         return t;
     }
 
+    public <T> T parse(String response){
+
+        return null;
+    }
+
     public static void main(String[] args) {
         GenericMethodTest.test("hello1");
         GenericMethodTest.<String>test("hello2");//推荐此种方式调用
@@ -41,5 +48,23 @@ public class GenericMethodTest{
 
         String str = "{\"success\":false}";
         GenericMethodTest.<SuccessModel>parse(str,SuccessModel.class);
+
+
+
+        Class clazz =  test.getClass();
+        try {
+            Method method = clazz.getMethod("parse",String.class);
+            Type type = method.getGenericReturnType();
+
+            System.out.println(" is ParameterizedType:"+(type instanceof ParameterizedType));
+            System.out.println(" is TypeVariable:"+(type instanceof TypeVariable));
+            System.out.println(" is WildcardType:"+(type instanceof WildcardType));
+            System.out.println(" is GenericArrayType:"+(type instanceof GenericArrayType));
+
+            TypeVariable typeVariable = (TypeVariable)type;
+            GenericDeclaration genericDeclaration = typeVariable.getGenericDeclaration();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
     }
 }
