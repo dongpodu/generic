@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 直接以 T 申明变量的类型，那么这个变量是TypeVariable
  */
-public class TypeVariableTest <T>{
+public class TypeVariableTest<T>{
     private T key;//TypeVariable
     private List<T> list; //ParameterizedType
     private List<String> items; //ParameterizedType
